@@ -688,7 +688,7 @@ Keycloak 콘솔에서 **jenkins** 클라이언트를 생성하고 Jenkins [Keycl
 
 ### Jenkins Agent 구성
 Jenkins [Kubernetes Plugin](https://wiki.jenkins-ci.org/display/JENKINS/Kubernetes+Plugin)을 통해 빌드 Agent를 k8s의 Pod으로 띄우도록 설정합니다.
-- Agent가 docker 및 kubectl 클라이언트를 이용 할 수 있도록 전용 [jenkins-agent](https://github.com/strix-kr/jenkins-agent) docker image를 구성합니다. (자세한 구성은 해당 저장소 README 참조)
+- Agent가 docker 및 kubectl 클라이언트를 이용 할 수 있도록 전용 [jenkins-agent](https://github.com/dehypnosis/jenkins-agent) docker image를 구성합니다. (자세한 구성은 해당 저장소 README 참조)
 - Agent가 registry.k8s.strix.kr docker registry에 로그인하고 푸시 할 수 있도록 dev 네임스페이스의 **local-docker-registry-secret**(위에서 생성한) Secret을 Agent Pod에 볼륨으로 마운트되도록 템플릿을 구성합니다.
 - Agent가 kubectl을 통해 kubenetes API에 접근 할 수 있도록 dev 네임스페이스에 쓰기 권한을 갖는 **jenkins-agent** Service Account를 생성하고 Agent Pod의 Service Account로 설정되도록 템플릿을 구성합니다. (ref. **16-jenkins-ingress-and-service-account.yaml**)
 
@@ -697,7 +697,7 @@ Jenkins가 Github 훅을 받도록 연동합니다. 이후 [Multibranch Pipeline
 
 - 각 단계 및 예외시 Slack 메세지 안내
 - 임시 이미지를 생성하고 테스트 커맨드 수행
-  - 주기적으로 임시 이미지들을 제거하는 [nexus script 작성 및 배포](https://github.com/strix-kr/nexus-scripts)
+  - 주기적으로 임시 이미지들을 제거하는 [nexus script 작성 및 배포](https://github.com/dehypnosis/nexus-scripts)
 - CD 브랜치의 경우 dev 네임스페이스에 :latest 이미지 배포
 - 태깅된 커밋의 경우 :tag 이미지 생성 및 operator용 배포 커맨드를 Slack을 통해 안내
 
